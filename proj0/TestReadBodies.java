@@ -1,37 +1,37 @@
 /**
- *  Tests Nbody.readPlanets. Reads in ./data/planets.txt and checks output of
- *  readPlanets().
+ *  Tests Nbody.readBodies. Reads in ./data/Bodies.txt and checks output of
+ *  readBodies().
  */
-public class TestReadPlanets {
+public class TestReadBodies {
 
     private static boolean doubleEquals(double actual, double expected, double eps) {
         return Math.abs(expected - actual) <= eps * Math.max(expected, actual);
     }
 
-    /** Checks to make sure that readPlanets() works perfectly. */
-    private static String checkReadPlanets() {
-        System.out.println("Checking readPlanets...");
-        String planetsTxtPath = "./data/planets.txt";
+    /** Checks to make sure that readBodies() works perfectly. */
+    private static String checkReadBodies() {
+        System.out.println("Checking readBodies...");
+        String BodiesTxtPath = "./data/Bodies.txt";
         /* If the following line fails to compile, you probably need to make
          * a certain method static! */
-        Planet[] actualOutput = NBody.readPlanets(planetsTxtPath);
+        Body[] actualOutput = NBody.readBodies(BodiesTxtPath);
 
         /* Check the simple things: */
         if (actualOutput == null) {
-            return "FAIL: readPlanets(); null output";
+            return "FAIL: readBodies(); null output";
         }
         if (actualOutput.length != 5) {
-            return "FAIL: readPlanets().length: Expected 5 and you gave " + actualOutput.length;
+            return "FAIL: readBodies().length: Expected 5 and you gave " + actualOutput.length;
         }
 
-        /* Check to make sure every planet exists, plus random spot checks */
+        /* Check to make sure every Body exists, plus random spot checks */
         boolean foundEarth = false;
         boolean foundMars = false;
         boolean foundMercury = false;
         boolean foundSun = false;
         boolean foundVenus = false;
         boolean randomChecksOkay = true;
-        for (Planet p : actualOutput) {
+        for (Body p : actualOutput) {
             if ("earth.gif".equals(p.imgFileName)) {
                 foundEarth = true;
                 if (!doubleEquals(p.xxPos, 1.4960e+11, 0.01)) {
@@ -57,36 +57,36 @@ public class TestReadPlanets {
             }
         }
 
-        /* Build up a nice list of missing planets */
-        String missingPlanets = "";
+        /* Build up a nice list of missing Bodies */
+        String missingBodies = "";
         if (!foundEarth) {
-            missingPlanets += "Earth, ";
+            missingBodies += "Earth, ";
         }
         if (!foundMars) {
-            missingPlanets += "Mars, ";
+            missingBodies += "Mars, ";
         }
         if (!foundMercury) {
-            missingPlanets += "Mercury, ";
+            missingBodies += "Mercury, ";
         }
         if (!foundSun) {
-            missingPlanets += "Sun, ";
+            missingBodies += "Sun, ";
         }
         if (!foundVenus) {
-            missingPlanets += "Venus, ";
+            missingBodies += "Venus, ";
         }
-        if (missingPlanets.length() > 0) {
-            String answer = "FAIL: readPlanets(); Missing these planets: ";
-            answer += missingPlanets.substring(0, missingPlanets.length() - 2);
+        if (missingBodies.length() > 0) {
+            String answer = "FAIL: readBodies(); Missing these Bodies: ";
+            answer += missingBodies.substring(0, missingBodies.length() - 2);
             return answer;
         }
         if (!randomChecksOkay) {
-            return "FAIL: readPlanets(); Not all planets have correct info!";
+            return "FAIL: readBodies(); Not all Bodies have correct info!";
         }
-        return "PASS: readPlanets(); Congrats! This was the hardest test!";
+        return "PASS: readBodies(); Congrats! This was the hardest test!";
     }
 
     public static void main(String[] args) {
-        String testResult = checkReadPlanets();
+        String testResult = checkReadBodies();
         System.out.println(testResult);
     }
 }
