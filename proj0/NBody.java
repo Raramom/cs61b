@@ -29,7 +29,7 @@ public class NBody
         return allPlanets;
     }
 
-    public static void drawBackground(double radius)
+    private static void drawBackground(double radius)
     {
         StdDraw.setScale(-radius, radius);
         StdDraw.clear();
@@ -39,7 +39,7 @@ public class NBody
 
     }
 
-    public static void drawPlanet(Planet[] allPlanets)
+    private static void drawPlanet(Planet[] allPlanets)
     {
         int len = allPlanets.length;
         for(int i=0;i<len;i++)
