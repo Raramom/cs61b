@@ -2,15 +2,17 @@
  * Created by jug on 1/22/18.
  */
 public class DebugExercise3 {
-    public static int countTurnips(In in) {
-        int totalTurnips = 0;
+    public static long countTurnips(In in) {
+        long totalTurnips = 0;
         while (!in.isEmpty()) {
             String vendor = in.readString();
             String foodType = in.readString();
             double cost = in.readDouble();
-            int numAvailable = in.readInt();
+            long numAvailable = in.readInt();
             if (foodType.equals("turnip")) {
-                int newTotal = totalTurnips + numAvailable;
+                long newTotal = totalTurnips + numAvailable;
+                if(newTotal<0.0)
+                    System.out.println("too large");
                 totalTurnips = newTotal;
             }
             in.readLine();
